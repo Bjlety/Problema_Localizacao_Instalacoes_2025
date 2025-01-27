@@ -1,0 +1,167 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Resultado da Otimização</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Relatório de Otimização - Problema das p-Medianas Capacitadas</h1>
+        <p>Data de geração: 2025-01-27 00:32:53</p>
+        <h2>Método: Força Bruta</h2>
+        
+        <h3>Melhor Solução Encontrada:</h3>
+        <p><b>Método:</b> Programação Dinâmica</p>
+        <p><b>Distância Média:</b> 3.39 km</p>
+        <p><b>Custo Total:</b> 2467000.00 reais</p>
+        
+        <p>A solução de Programação Dinâmica é considerada a melhor. Este método utiliza uma abordagem mais sistemática para explorar o espaço de soluções, dividindo o problema em subproblemas e armazenando suas soluções para evitar recálculos, o que pode levar a resultados mais precisos do que abordagens puramente gulosas, especialmente em problemas de otimização combinatória.</p>
+        
+    <h3>Solução (Força Bruta):</h3>
+    <p><b>Tempo de Execução:</b> 1.63 segundos</p>
+    <p><b>Distância média: :</b> 12.08 km</p>
+    <p><b>Custo total: :</b> 2467000.00 reais</p>
+    
+        
+    <h3>Hospitais::</h3>
+    <table border="1">
+        <tr>
+            <th>Local do Hospital </th>
+            <th>Coordenada x </th>
+            <th>Coordenada y </th>
+            <th>Custo </th>
+        </tr>
+    
+        <tr>
+            <td>Rua do Catete 150</td>
+            <td>-22.93</td>
+            <td>-43.175</td>
+            <td>1092600.00 reais</td>
+        </tr>
+        
+        <tr>
+            <td>Rua Teodoro da Silva 500</td>
+            <td>-22.915</td>
+            <td>-43.245</td>
+            <td>1374400.00 reais</td>
+        </tr>
+        </table>
+        
+    <h3>Pacientes atendidos por cada hospital:</h3>
+    <table border="1">
+        <tr>
+            <th>Hospital</th>
+            <th>pacientes.csv</th>
+        </tr>
+    
+        <tr>
+            <td>Rua do Catete 150</td>
+            <td>Copacabana, Ipanema, Botafogo, Centro, Santa Teresa, Lapa, Flamengo, Laranjeiras, Catete, Gloria, Urca, Cosme Velho</td>
+        </tr>
+        
+        <tr>
+            <td>Rua Teodoro da Silva 500</td>
+            <td>Barra da Tijuca, Leblon, Gavea, Jardim Botanico, Humaita, Leme, Tijuca, Vila Isabel, Maracana, Grajau, Meier, Sao Cristovao, Barra de Guaratiba, Vargem Grande, Engenho Novo, Jacarepagua, Recreio dos Bandeirantes, Campo Grande, Bangu, Realengo, Padre Miguel, Santa Cruz, Guaratiba, Sepetiba, Paciencia, Madureira, Iraja, Penha, Olaria, Ramos</td>
+        </tr>
+        </table>
+        
+    <h3>pacientes.csv não atendidos</h3>
+    <table border="1">
+        <tr>
+            <th>Bairro dos Pacientes </th>
+            <th>Coordenada x </th>
+            <th>Coordenada y </th>
+            <th>Demanda </th>
+        </tr>
+    
+        <tr>
+            <td>Realengo</td>
+            <td>-22.875</td>
+            <td>-43.4333</td>
+            <td>540.0</td>
+        </tr>
+        
+        <tr>
+            <td>Padre Miguel</td>
+            <td>-22.8611</td>
+            <td>-43.4</td>
+            <td>360.0</td>
+        </tr>
+        
+        <tr>
+            <td>Santa Cruz</td>
+            <td>-22.9167</td>
+            <td>-43.65</td>
+            <td>660.0</td>
+        </tr>
+        
+        <tr>
+            <td>Guaratiba</td>
+            <td>-23.0</td>
+            <td>-43.6167</td>
+            <td>240.0</td>
+        </tr>
+        
+        <tr>
+            <td>Paciencia</td>
+            <td>-22.8833</td>
+            <td>-43.65</td>
+            <td>300.0</td>
+        </tr>
+        
+        <tr>
+            <td>Madureira</td>
+            <td>-22.875</td>
+            <td>-43.3333</td>
+            <td>300.0</td>
+        </tr>
+        
+        <tr>
+            <td>Iraja</td>
+            <td>-22.85</td>
+            <td>-43.3167</td>
+            <td>330.0</td>
+        </tr>
+        
+        <tr>
+            <td>Penha</td>
+            <td>-22.85</td>
+            <td>-43.2833</td>
+            <td>165.0</td>
+        </tr>
+        
+        <tr>
+            <td>Olaria</td>
+            <td>-22.8833</td>
+            <td>-43.2667</td>
+            <td>450.0</td>
+        </tr>
+        
+        <tr>
+            <td>Ramos</td>
+            <td>-22.8667</td>
+            <td>-43.25</td>
+            <td>300.0</td>
+        </tr>
+        </table>
+        
+    <h3>Resumo da Solução</h3>
+    <table border="1">
+        <tr>
+            <th>Total de Pacientes Atendidos</th>
+            <td>42</td>
+        </tr>
+        <tr>
+            <th>Total de Pacientes Não Atendidos</th>
+            <td>10</td>
+        </tr>
+        <tr>
+            <th>Capacidade Total dos Hospitais Utilizados</th>
+            <td>5257.0</td>
+        </tr>
+    </table>
+    
+        <img src="grafico_Força_Bruta_pt_27012025_0032.png" alt="Alocação de Pacientes e Hospitais">
+    </body>
+    </html>
+    

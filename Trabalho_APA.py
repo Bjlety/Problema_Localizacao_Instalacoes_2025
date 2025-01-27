@@ -763,7 +763,7 @@ def guloso(pacientes_df, hospitais_df, p, idioma):
             raise ValueError("Erro nos cabeçalhos dos pacientes.")
         if list(hospitais_df.columns) != cabecalho_hospitais_esperado:
             raise ValueError("Erro nos cabeçalhos dos hospitais.")
-
+        inicio = time.time()
         centros = []
         alocacao = {}
         demanda_atendida = {i: 0 for i in hospitais_df.index}
@@ -786,7 +786,8 @@ def guloso(pacientes_df, hospitais_df, p, idioma):
                     if beneficio > maior_beneficio:
                         maior_beneficio = beneficio
                         melhor_centro = hospital
-
+            if time.time() - inicio > 100:
+                raise TimeoutError(IDIOMAS[idioma]["Tempo limite excedido para o método guloso."])
             if melhor_centro is not None:
                 centros.append(melhor_centro)
 
@@ -808,6 +809,8 @@ def guloso(pacientes_df, hospitais_df, p, idioma):
                 demanda_atendida[melhor_centro] += paciente['Demanda']
             else:
                 pacientes_nao_atendidos.append(i)
+            if time.time() - inicio > 100:
+                raise TimeoutError(IDIOMAS[idioma]["Tempo limite excedido para o método guloso."])    
 
         # Rechecagem para alocar pacientes restantes
         for paciente_id in pacientes_nao_atendidos[:]:
@@ -818,6 +821,8 @@ def guloso(pacientes_df, hospitais_df, p, idioma):
                     demanda_atendida[centro] += paciente['Demanda']
                     pacientes_nao_atendidos.remove(paciente_id)
                     break
+        if time.time() - inicio > 100:
+                raise TimeoutError(IDIOMAS[idioma]["Tempo limite excedido para o método guloso."])            
 
         custo, distancia = calcular_custo_distancia(pacientes_df, hospitais_df, centros, alocacao)
         return centros, alocacao, custo, distancia, pacientes_nao_atendidos
@@ -837,6 +842,7 @@ def programacao_dinamica(pacientes_df, hospitais_df, p, idioma):
         if list(hospitais_df.columns) != cabecalho_hospitais_esperado:
             raise ValueError("Erro nos cabeçalhos dos hospitais.")
 
+        inicio = time.time()
         n = len(hospitais_df)
         distancias = {
             (i, j): haversine(
@@ -861,6 +867,8 @@ def programacao_dinamica(pacientes_df, hospitais_df, p, idioma):
                     nova_alocacao = centros + [nova_instalacao]
                     if novo_custo < dp[nova_mascara][0]:
                         dp[nova_mascara] = (novo_custo, nova_alocacao)
+            if time.time() - inicio > 150:
+                raise TimeoutError(IDIOMAS[idioma]["Tempo limite excedido para o método de programação dinâmica."])            
 
         melhor_custo = float('inf')
         melhor_solucao = None
@@ -900,6 +908,8 @@ def programacao_dinamica(pacientes_df, hospitais_df, p, idioma):
                     demanda_atendida[centro] += paciente['Demanda']
                     pacientes_nao_atendidos.remove(paciente_id)
                     break
+            if time.time() - inicio > 150:
+                raise TimeoutError(IDIOMAS[idioma]["Tempo limite excedido para o método de programação dinâmica."])        
 
         distancia_total = sum(
             distancias[(i, alocacao[i])] for i in alocacao if alocacao[i] is not None
@@ -922,6 +932,7 @@ def divisao_conquista(pacientes_df, hospitais_df, p, idioma):
             raise ValueError("Erro nos cabeçalhos dos pacientes.")
         if list(hospitais_df.columns) != cabecalho_hospitais_esperado:
             raise ValueError("Erro nos cabeçalhos dos hospitais.")
+        inicio = time.time()    
 
         def dividir_geograficamente(pacientes, hospitais):
             centro_x = pacientes['Coordenada x'].median()
@@ -959,6 +970,8 @@ def divisao_conquista(pacientes_df, hospitais_df, p, idioma):
                         demanda_atendida[centro] += paciente['Demanda']
                         pacientes_nao_atendidos.remove(paciente_id)
                         break
+                if time.time() - inicio > 300:
+                    raise TimeoutError(IDIOMAS[idioma]["Tempo limite excedido para o método de divisão e conquista."])       
 
             custo = sum(hospitais.loc[c, 'Custo'] for c in centros)
             distancia_total = sum(
